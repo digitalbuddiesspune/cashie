@@ -1,0 +1,13 @@
+const Card = ({ children, className = '', hover = false }) => {
+  const baseStyles = 'bg-white rounded-xl shadow-lg p-6 transition-all duration-300';
+  const hoverStyles = hover ? 'hover:scale-105 hover:shadow-xl cursor-pointer' : '';
+
+  return (
+    <div className={`${baseStyles} ${hoverStyles} ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+export default Card;
+
