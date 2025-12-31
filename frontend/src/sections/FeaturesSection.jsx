@@ -39,7 +39,7 @@ const FeaturesSection = () => {
               </li>
             </ul>
           </div>
-          <div className="relative rounded-2xl overflow-hidden">
+          <div className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px]">
             <img 
               src="https://res.cloudinary.com/dvkxgrcbv/image/upload/v1767172943/Untitled_1920_x_900_px_800_x_500_px_400_x_300_px_liocg0.svg" 
               alt="Payment Solutions Banner" 
@@ -76,7 +76,7 @@ const FeaturesSection = () => {
               </li>
             </ul>
           </div>
-          <div className="relative rounded-2xl overflow-hidden lg:order-1">
+          <div className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px] lg:order-1">
             <img 
               src="https://res.cloudinary.com/dvkxgrcbv/image/upload/v1767172943/Untitled_1920_x_900_px_800_x_500_px_400_x_300_px_liocg0.svg" 
               alt="Security & Compliance Banner" 
@@ -113,7 +113,7 @@ const FeaturesSection = () => {
               </li>
             </ul>
           </div>
-          <div className="relative rounded-2xl overflow-hidden">
+          <div className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px]">
             <img 
               src="https://res.cloudinary.com/dvkxgrcbv/image/upload/v1767172943/Untitled_1920_x_900_px_800_x_500_px_400_x_300_px_liocg0.svg" 
               alt="Fast Transactions Banner" 
