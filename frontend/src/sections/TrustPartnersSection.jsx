@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react';
+
 const TrustPartnersSection = () => {
   const partners = [
     {
@@ -139,6 +141,97 @@ const TrustPartnersSection = () => {
     }
   ];
 
+  // Duplicate partners for seamless infinite scroll
+  const duplicatedPartners = [...partners, ...partners];
+  const carouselRef = useRef(null);
+  const carouselRef2 = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused2, setIsPaused2] = useState(false);
+
+  // First carousel animation - infinite movement
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    let animationId;
+    let translateX = 0;
+    const scrollSpeed = 0.5; // pixels per frame
+
+    const animate = () => {
+      if (!isPaused) {
+        translateX += scrollSpeed;
+        const maxTranslate = carousel.scrollWidth / 2; // Half because we duplicated
+        
+        // Seamless infinite loop - reset when reaching max
+        if (translateX >= maxTranslate) {
+          translateX = translateX - maxTranslate;
+        }
+        
+        carousel.style.transform = `translateX(-${translateX}px)`;
+      }
+      // Always request next frame for infinite animation
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [isPaused]);
+
+  // Second carousel animation - infinite movement left to right
+  useEffect(() => {
+    const carousel = carouselRef2.current;
+    if (!carousel) return;
+  
+    let animationId;
+    let translateX = -carousel.scrollWidth / 2;
+    const scrollSpeed = 0.5;
+  
+    const animate = () => {
+      if (!isPaused2) {
+        translateX += scrollSpeed;
+        const maxTranslate = 0;
+  
+        if (translateX >= maxTranslate) {
+          translateX = -carousel.scrollWidth / 2;
+        }
+  
+        carousel.style.transform = `translateX(${translateX}px)`;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+  
+    animationId = requestAnimationFrame(animate);
+  
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused2]);
+  
+  // Render card component
+  const renderCard = (partner, index) => (
+    <div
+      key={index}
+      className={`${partner.bgColor} rounded-xl p-4 md:p-5 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 hover:scale-[1.03] cursor-pointer group relative overflow-hidden flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px]`}
+    >
+      {/* Gradient overlay on hover */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${partner.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+      
+      <div className="relative w-full">
+        <div className={`w-12 h-12 md:w-14 md:h-14 mx-auto mb-3 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all p-2.5`}>
+          <div className="text-slate-700 w-full h-full group-hover:scale-110 transition-transform duration-300">
+            {partner.logo}
+          </div>
+        </div>
+        <p className={`text-center font-semibold ${partner.textColor} text-xs md:text-sm leading-tight group-hover:${partner.textColor.replace('700', '800')} transition-colors`}>
+          {partner.name}
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <section className="pt-8 pb-20 bg-white">
       <div className="max-w-[95%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto px-8">
@@ -150,27 +243,26 @@ const TrustPartnersSection = () => {
             Join hundreds of companies using Cashie
           </p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 md:gap-4">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className={`${partner.bgColor} rounded-xl p-4 md:p-5 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 hover:scale-[1.03] cursor-pointer group relative overflow-hidden`}
-            >
-              {/* Gradient overlay on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${partner.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-              
-              <div className="relative">
-                <div className={`w-12 h-12 md:w-14 md:h-14 mx-auto mb-3 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all p-2.5`}>
-                  <div className="text-slate-700 w-full h-full group-hover:scale-110 transition-transform duration-300">
-                    {partner.logo}
-                  </div>
-                </div>
-                <p className={`text-center font-semibold ${partner.textColor} text-xs md:text-sm leading-tight group-hover:${partner.textColor.replace('700', '800')} transition-colors`}>
-                  {partner.name}
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* First Carousel */}
+        <div 
+          className="overflow-hidden mb-4"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div ref={carouselRef} className="flex gap-3 md:gap-4 w-max">
+            {duplicatedPartners.map((partner, index) => renderCard(partner, index))}
+          </div>
+        </div>
+
+        {/* Second Carousel */}
+        <div 
+          className="overflow-hidden"
+          onMouseEnter={() => setIsPaused2(true)}
+          onMouseLeave={() => setIsPaused2(false)}
+        >
+          <div ref={carouselRef2} className="flex gap-3 md:gap-4 w-max">
+            {[...duplicatedPartners].reverse().map((partner, index) => renderCard(partner, `carousel2-${index}`))}
+          </div>
         </div>
       </div>
     </section>
