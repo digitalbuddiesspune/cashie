@@ -265,18 +265,18 @@ const TrustPartnersSection = () => {
   const renderCard = (partner, index) => (
     <div
       key={index}
-      className={`${partner.bgColor} rounded-xl p-4 md:p-5 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 hover:scale-[1.03] cursor-pointer group relative overflow-hidden flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px]`}
+      className={`${partner.bgColor} rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 hover:scale-[1.03] cursor-pointer group relative overflow-hidden flex-shrink-0 w-[120px] sm:w-[160px] md:w-[180px]`}
     >
       {/* Gradient overlay on hover */}
       <div className={`absolute inset-0 bg-gradient-to-br ${partner.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
       
       <div className="relative w-full">
-        <div className={`w-12 h-12 md:w-14 md:h-14 mx-auto mb-3 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all p-2.5`}>
+        <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto mb-2 sm:mb-3 rounded-lg sm:rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all p-2 sm:p-2.5`}>
           <div className="text-slate-700 w-full h-full group-hover:scale-110 transition-transform duration-300">
             {partner.logo}
           </div>
         </div>
-        <p className={`text-center font-semibold ${partner.textColor} text-xs md:text-sm leading-tight group-hover:${partner.textColor.replace('700', '800')} transition-colors`}>
+        <p className={`text-center font-semibold ${partner.textColor} text-[10px] sm:text-xs md:text-sm leading-tight group-hover:${partner.textColor.replace('700', '800')} transition-colors`}>
           {partner.name}
         </p>
       </div>
@@ -284,19 +284,19 @@ const TrustPartnersSection = () => {
   );
 
   return (
-    <section className="pt-8 pb-20 bg-white">
-      <div className="w-full px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-lg md:text-xl lg:text-5xl font-semibold text-slate-600 mb-3 tracking-wide uppercase">
+    <section className="pt-8 md:pt-12 pb-12 md:pb-20 bg-white">
+      <div className="w-full px-4 sm:px-6 md:px-8">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-600 mb-2 md:mb-3 tracking-wide uppercase">
             Trusted by growing businesses
           </h2>
-          <p className="text-sm md:text-base text-slate-500">
+          <p className="text-xs sm:text-sm md:text-base text-slate-500">
             Join hundreds of companies using Cashie
           </p>
         </div>
         {/* First Carousel */}
         <div 
-          className="overflow-hidden mb-4 relative w-full"
+          className="overflow-hidden mb-3 sm:mb-4 relative w-full"
           onMouseEnter={() => {
             setIsPaused(true);
           }}
@@ -309,7 +309,7 @@ const TrustPartnersSection = () => {
         >
           <div 
             ref={carouselRef} 
-            className="flex gap-3 md:gap-4 w-max"
+            className="flex gap-2 sm:gap-3 md:gap-4 w-max"
             style={{ pointerEvents: 'auto' }}
           >
             {duplicatedPartners.map((partner, index) => renderCard(partner, index))}
@@ -331,7 +331,7 @@ const TrustPartnersSection = () => {
         >
           <div 
             ref={carouselRef2} 
-            className="flex gap-3 md:gap-4 w-max"
+            className="flex gap-2 sm:gap-3 md:gap-4 w-max"
             style={{ pointerEvents: 'auto' }}
           >
             {[...duplicatedPartners].reverse().map((partner, index) => renderCard(partner, `carousel2-${index}`))}

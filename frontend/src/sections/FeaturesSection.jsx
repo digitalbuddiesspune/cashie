@@ -14,7 +14,7 @@ const FeaturesSection = () => {
 
         {/* Feature 1 */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-16 md:mb-20">
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 md:mb-4 leading-[1.2] tracking-tight">
               One Platform, Infinite Possibilities
             </h3>
@@ -56,7 +56,7 @@ const FeaturesSection = () => {
               </li>
             </ul>
           </div>
-          <div className="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[380px] order-1 lg:order-2 flex items-center justify-center bg-slate-50 rounded-lg">
+          <div className="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[380px] order-2 lg:order-2 flex items-center justify-center bg-slate-50 rounded-lg">
             <img 
               src="https://res.cloudinary.com/dvkxgrcbv/image/upload/v1767172943/Untitled_1920_x_900_px_800_x_500_px_400_x_300_px_liocg0.svg" 
               alt="Payment Solutions Banner" 
@@ -67,7 +67,7 @@ const FeaturesSection = () => {
 
         {/* Feature 2 - Reversed */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-16 md:mb-20">
-          <div className="lg:order-2">
+          <div className="order-1 lg:order-2">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 md:mb-4 leading-[1.2] tracking-tight">
               Advanced Security & Compliance
             </h3>
@@ -109,7 +109,7 @@ const FeaturesSection = () => {
               </li>
             </ul>
           </div>
-          <div className="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[380px] lg:order-1 flex items-center justify-center bg-slate-50 rounded-lg">
+          <div className="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[380px] order-2 lg:order-1 flex items-center justify-center bg-slate-50 rounded-lg">
             <img 
               src="https://res.cloudinary.com/dvkxgrcbv/image/upload/v1767178324/Untitled_1920_x_900_px_800_x_500_px_400_x_300_px_1_am1wup.svg" 
               alt="Security & Compliance Banner" 
@@ -120,7 +120,7 @@ const FeaturesSection = () => {
 
         {/* Feature 3 */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 md:mb-4 leading-[1.2] tracking-tight">
               Lightning-Fast Transactions
             </h3>
@@ -162,7 +162,7 @@ const FeaturesSection = () => {
               </li>
             </ul>
           </div>
-          <div className="relative overflow-hidden h-[220px] md:h-[280px] lg:h-[340px] order-1 lg:order-2 flex items-center justify-center bg-slate-50 rounded-lg">
+          <div className="relative overflow-hidden h-[220px] md:h-[280px] lg:h-[340px] order-2 lg:order-2 flex items-center justify-center bg-slate-50 rounded-lg">
             <img 
               src="https://res.cloudinary.com/dvkxgrcbv/image/upload/v1767252729/1702405223824_sih2lr.gif" 
               alt="Fast Transactions Banner" 

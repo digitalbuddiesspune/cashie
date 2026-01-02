@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section className="relative py-12 md:py-20 bg-white overflow-hidden">
+    <section className="relative pt-20 pb-12 md:pt-24 md:pb-20 bg-white overflow-hidden">
       {/* Laptop/Desktop View - Banner Image */}
       <div className="hidden lg:block w-full">
         <img 
