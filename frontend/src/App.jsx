@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary';
+import ScrollToTop from './components/ScrollToTop';
+import ScrollToTopOnRouteChange from './components/ScrollToTopOnRouteChange';
 
 // Pages
 import Home from './pages/Home';
@@ -12,12 +15,26 @@ import Payments from './pages/Payments';
 import Banking from './pages/Banking';
 import Payroll from './pages/Payroll';
 import Pricing from './pages/Pricing';
+import IdentityRisk from './pages/IdentityRisk';
+import Developers from './pages/Developers';
+import PartnerWithUs from './pages/PartnerWithUs';
+import Support from './pages/Support';
+import Transactions from './pages/Transactions';
+import Wallet from './pages/Wallet';
+import PaymentLinks from './pages/PaymentLinks';
+import QRCode from './pages/QRCode';
+import Reports from './pages/Reports';
+import Settings from './pages/Settings';
+import Invoices from './pages/Invoices';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <ScrollToTopOnRouteChange />
+          <ScrollToTop />
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -25,6 +42,66 @@ function App() {
           <Route path="/banking" element={<Banking />} />
           <Route path="/payroll" element={<Payroll />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/identity-risk" element={<IdentityRisk />} />
+          <Route path="/developers" element={<Developers />} />
+          <Route path="/partner-with-us" element={<PartnerWithUs />} />
+          <Route path="/support" element={<Support />} />
+          <Route
+            path="/transactions"
+            element={
+              <ProtectedRoute>
+                <Transactions />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/wallet"
+            element={
+              <ProtectedRoute>
+                <Wallet />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment-links"
+            element={
+              <ProtectedRoute>
+                <PaymentLinks />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/qr-code"
+            element={
+              <ProtectedRoute>
+                <QRCode />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <ProtectedRoute>
+                <Reports />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/invoices"
+            element={
+              <ProtectedRoute>
+                <Invoices />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/dashboard"
             element={
@@ -41,9 +118,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-        </Routes>
-      </Router>
-    </AuthProvider>
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

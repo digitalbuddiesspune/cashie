@@ -38,25 +38,35 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const response = await api.post('/auth/login', { email, password });
-    const { accessToken, refreshToken, user } = response.data;
-    
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
-    setUser(user);
-    
-    return response.data;
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      const { accessToken, refreshToken, user } = response.data;
+      
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      setUser(user);
+      
+      return response.data;
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Login failed. Please try again.';
+      throw new Error(message);
+    }
   };
 
   const register = async (userData) => {
-    const response = await api.post('/auth/register', userData);
-    const { accessToken, refreshToken, user } = response.data;
-    
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
-    setUser(user);
-    
-    return response.data;
+    try {
+      const response = await api.post('/auth/register', userData);
+      const { accessToken, refreshToken, user } = response.data;
+      
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      setUser(user);
+      
+      return response.data;
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || 'Registration failed. Please try again.';
+      throw new Error(message);
+    }
   };
 
   const logout = () => {

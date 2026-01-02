@@ -17,7 +17,7 @@ const IntroSection = () => {
 
   return (
     <section className="relative pt-8 pb-20 md:pt-12 md:pb-28 bg-white overflow-hidden">
-      <div className="max-w-[95%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto px-8">
+      <div className="w-full px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div>

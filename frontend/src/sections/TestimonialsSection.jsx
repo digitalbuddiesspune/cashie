@@ -31,9 +31,9 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="max-w-[95%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto px-8">
-        <div className="text-center mb-16">
+    <section className="py-12 md:py-16 bg-slate-50">
+      <div className="w-full px-8">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             What Our Partners Say
           </h2>

@@ -3,16 +3,16 @@ import Button from '../components/Button';
 
 const CTASection = () => {
   return (
-    <section className="py-24 bg-slate-900 text-white">
-      <div className="max-w-[95%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto px-8">
+    <section className="py-12 md:py-16 bg-slate-900 text-white">
+      <div className="w-full px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-xl text-slate-300 mb-4">
+          <p className="text-xl text-slate-300 mb-3 md:mb-4">
             Join thousands of businesses already using Cashie
           </p>
-          <p className="text-lg text-slate-400 mb-10">
+          <p className="text-lg text-slate-400 mb-6 md:mb-8">
             Because payments should be fast, simple, and secure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

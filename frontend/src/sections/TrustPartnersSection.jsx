@@ -145,6 +145,10 @@ const TrustPartnersSection = () => {
   const duplicatedPartners = [...partners, ...partners];
   const carouselRef = useRef(null);
   const carouselRef2 = useRef(null);
+  const animationIdRef = useRef(null);
+  const animationIdRef2 = useRef(null);
+  const translateXRef = useRef(0);
+  const translateXRef2 = useRef(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isPaused2, setIsPaused2] = useState(false);
 
@@ -153,31 +157,52 @@ const TrustPartnersSection = () => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    let animationId;
-    let translateX = 0;
     const scrollSpeed = 0.5; // pixels per frame
 
     const animate = () => {
-      if (!isPaused) {
-        translateX += scrollSpeed;
-        const maxTranslate = carousel.scrollWidth / 2; // Half because we duplicated
-        
-        // Seamless infinite loop - reset when reaching max
-        if (translateX >= maxTranslate) {
-          translateX = translateX - maxTranslate;
+      // Stop animation if paused
+      if (isPaused) {
+        if (animationIdRef.current) {
+          cancelAnimationFrame(animationIdRef.current);
+          animationIdRef.current = null;
         }
-        
-        carousel.style.transform = `translateX(-${translateX}px)`;
+        return;
       }
-      // Always request next frame for infinite animation
-      animationId = requestAnimationFrame(animate);
+
+      translateXRef.current += scrollSpeed;
+      const maxTranslate = carousel.scrollWidth / 2; // Half because we duplicated
+      
+      // Seamless infinite loop - reset when reaching max
+      if (translateXRef.current >= maxTranslate) {
+        translateXRef.current = translateXRef.current - maxTranslate;
+      }
+      
+      carousel.style.transform = `translateX(-${translateXRef.current}px)`;
+      
+      // Request next frame
+      animationIdRef.current = requestAnimationFrame(animate);
     };
 
-    animationId = requestAnimationFrame(animate);
+    // Cancel any existing animation
+    if (animationIdRef.current) {
+      cancelAnimationFrame(animationIdRef.current);
+      animationIdRef.current = null;
+    }
+
+    // Initialize translateX if needed
+    if (translateXRef.current === 0 && carousel.scrollWidth > 0) {
+      translateXRef.current = 0;
+    }
+
+    // Start animation only if not paused
+    if (!isPaused) {
+      animationIdRef.current = requestAnimationFrame(animate);
+    }
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
       }
     };
   }, [isPaused]);
@@ -187,27 +212,53 @@ const TrustPartnersSection = () => {
     const carousel = carouselRef2.current;
     if (!carousel) return;
   
-    let animationId;
-    let translateX = -carousel.scrollWidth / 2;
     const scrollSpeed = 0.5;
   
     const animate = () => {
-      if (!isPaused2) {
-        translateX += scrollSpeed;
-        const maxTranslate = 0;
-  
-        if (translateX >= maxTranslate) {
-          translateX = -carousel.scrollWidth / 2;
+      // Stop animation if paused
+      if (isPaused2) {
+        if (animationIdRef2.current) {
+          cancelAnimationFrame(animationIdRef2.current);
+          animationIdRef2.current = null;
         }
-  
-        carousel.style.transform = `translateX(${translateX}px)`;
+        return;
       }
-      animationId = requestAnimationFrame(animate);
+
+      translateXRef2.current += scrollSpeed;
+      const maxTranslate = 0;
+  
+      if (translateXRef2.current >= maxTranslate) {
+        translateXRef2.current = -carousel.scrollWidth / 2;
+      }
+  
+      carousel.style.transform = `translateX(${translateXRef2.current}px)`;
+      
+      // Request next frame
+      animationIdRef2.current = requestAnimationFrame(animate);
     };
   
-    animationId = requestAnimationFrame(animate);
+    // Cancel any existing animation
+    if (animationIdRef2.current) {
+      cancelAnimationFrame(animationIdRef2.current);
+      animationIdRef2.current = null;
+    }
+
+    // Initialize translateX if needed
+    if (carousel.scrollWidth > 0 && translateXRef2.current === 0) {
+      translateXRef2.current = -carousel.scrollWidth / 2;
+    }
+
+    // Start animation only if not paused
+    if (!isPaused2) {
+      animationIdRef2.current = requestAnimationFrame(animate);
+    }
   
-    return () => cancelAnimationFrame(animationId);
+    return () => {
+      if (animationIdRef2.current) {
+        cancelAnimationFrame(animationIdRef2.current);
+        animationIdRef2.current = null;
+      }
+    };
   }, [isPaused2]);
   
   // Render card component
@@ -234,7 +285,7 @@ const TrustPartnersSection = () => {
 
   return (
     <section className="pt-8 pb-20 bg-white">
-      <div className="max-w-[95%] xl:max-w-[90%] 2xl:max-w-[85%] mx-auto px-8">
+      <div className="w-full px-8">
         <div className="text-center mb-12">
           <h2 className="text-lg md:text-xl lg:text-5xl font-semibold text-slate-600 mb-3 tracking-wide uppercase">
             Trusted by growing businesses
@@ -245,22 +296,44 @@ const TrustPartnersSection = () => {
         </div>
         {/* First Carousel */}
         <div 
-          className="overflow-hidden mb-4"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          className="overflow-hidden mb-4 relative w-full"
+          onMouseEnter={() => {
+            setIsPaused(true);
+          }}
+          onMouseLeave={() => {
+            setIsPaused(false);
+          }}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          style={{ cursor: 'grab', pointerEvents: 'auto' }}
         >
-          <div ref={carouselRef} className="flex gap-3 md:gap-4 w-max">
+          <div 
+            ref={carouselRef} 
+            className="flex gap-3 md:gap-4 w-max"
+            style={{ pointerEvents: 'auto' }}
+          >
             {duplicatedPartners.map((partner, index) => renderCard(partner, index))}
           </div>
         </div>
 
         {/* Second Carousel */}
         <div 
-          className="overflow-hidden"
-          onMouseEnter={() => setIsPaused2(true)}
-          onMouseLeave={() => setIsPaused2(false)}
+          className="overflow-hidden relative w-full"
+          onMouseEnter={() => {
+            setIsPaused2(true);
+          }}
+          onMouseLeave={() => {
+            setIsPaused2(false);
+          }}
+          onTouchStart={() => setIsPaused2(true)}
+          onTouchEnd={() => setIsPaused2(false)}
+          style={{ cursor: 'grab', pointerEvents: 'auto' }}
         >
-          <div ref={carouselRef2} className="flex gap-3 md:gap-4 w-max">
+          <div 
+            ref={carouselRef2} 
+            className="flex gap-3 md:gap-4 w-max"
+            style={{ pointerEvents: 'auto' }}
+          >
             {[...duplicatedPartners].reverse().map((partner, index) => renderCard(partner, `carousel2-${index}`))}
           </div>
         </div>

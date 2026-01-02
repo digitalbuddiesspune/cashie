@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm w-full">
       <div className="w-full px-4 md:px-8 lg:px-12">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -28,30 +28,42 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation - Center */}
-          <div className="hidden md:flex items-center space-x-1">
-            <Link 
-              to="/" 
-              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
-            >
-              Home
-            </Link>
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
             <Link 
               to="/payments" 
               className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
             >
-              Solutions
+              Payments
+            </Link>
+            <Link 
+              to="/identity-risk" 
+              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
+            >
+              Identity & Risk Solutions
+            </Link>
+            <Link 
+              to="/developers" 
+              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
+            >
+              Developers
+            </Link>
+            <Link 
+              to="/partner-with-us" 
+              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
+            >
+              Partner with us
+            </Link>
+            <Link 
+              to="/support" 
+              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
+            >
+              Support
             </Link>
             <Link 
               to="/pricing" 
               className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
             >
               Pricing
-            </Link>
-            <Link 
-              to="/banking" 
-              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
-            >
-              Contact
             </Link>
           </div>
 
@@ -132,7 +144,35 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
               >
-                Solutions
+                Payments
+              </Link>
+              <Link
+                to="/identity-risk"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
+              >
+                Identity & Risk Solutions
+              </Link>
+              <Link
+                to="/developers"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
+              >
+                Developers
+              </Link>
+              <Link
+                to="/partner-with-us"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
+              >
+                Partner with us
+              </Link>
+              <Link
+                to="/support"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
+              >
+                Support
               </Link>
               <Link
                 to="/pricing"
@@ -140,13 +180,6 @@ const Navbar = () => {
                 className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
               >
                 Pricing
-              </Link>
-              <Link
-                to="/banking"
-                onClick={() => setIsMenuOpen(false)}
-                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg"
-              >
-                Contact
               </Link>
               {!user && (
                 <Link
