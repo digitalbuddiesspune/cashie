@@ -34,7 +34,8 @@ function App() {
         <Router>
           <ScrollToTopOnRouteChange />
           <ScrollToTop />
-          <Routes>
+          <div className="page-transition">
+            <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -118,7 +119,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          </Routes>
+            </Routes>
+          </div>
         </Router>
       </AuthProvider>
     </ErrorBoundary>

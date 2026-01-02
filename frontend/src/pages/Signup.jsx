@@ -170,7 +170,7 @@ const Signup = () => {
                     </svg>
                     Creating account...
                   </span>
-                ) : 'Create Account'}
+                ) : 'Sign Up'}
               </Button>
             </form>
 

@@ -29,11 +29,6 @@ const IntroSection = () => {
               Transform your business with cutting-edge financial technology. Seamless transactions, secure payments, and powerful tools to accelerate your growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/signup">
-                <Button variant="primary" className="px-8 py-4 text-lg font-semibold">
-                  Create Account
-                </Button>
-              </Link>
               <Link to="/partner-register">
                 <Button variant="outline" className="px-8 py-4 text-lg font-semibold border-2 border-slate-300 text-slate-700 hover:bg-slate-50">
                   Join as Partner

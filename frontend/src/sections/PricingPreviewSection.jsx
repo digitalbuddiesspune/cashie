@@ -35,7 +35,7 @@ const PricingPreviewSection = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-slate-50 via-indigo-50/20 to-white relative overflow-hidden">
+    <section className="pt-4 md:pt-6 pb-12 md:pb-16 bg-gradient-to-br from-slate-50 via-indigo-50/20 to-white relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-100/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100/10 rounded-full blur-3xl -ml-48 -mb-48"></div>

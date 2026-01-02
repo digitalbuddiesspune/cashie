@@ -16,11 +16,6 @@ const CTASection = () => {
             Because payments should be fast, simple, and secure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup">
-              <Button variant="secondary" className="px-8 py-4 text-lg font-semibold bg-white text-slate-900 hover:bg-slate-100">
-                Create Account
-              </Button>
-            </Link>
             <Link to="/partner-register">
               <Button variant="outline" className="px-8 py-4 text-lg font-semibold border-2 border-white text-white hover:bg-white hover:text-slate-900">
                 Join as Partner

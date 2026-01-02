@@ -570,11 +570,6 @@ const Payments = () => {
             <p className="text-lg text-indigo-100 mb-8">
               Start accepting payments today with our easy setup process
             </p>
-            <Link to="/signup">
-              <Button variant="secondary" className="px-8 py-3 text-lg bg-white text-indigo-600 hover:bg-slate-100">
-                Create Account
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
