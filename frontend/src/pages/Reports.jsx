@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 
 const Reports = () => {
   const [dateRange, setDateRange] = useState('month');
@@ -22,23 +22,16 @@ const Reports = () => {
 
   const fetchReports = async () => {
     setLoading(true);
-    try {
-      const response = await api.get('/reports', { params: { range: dateRange } });
-      setReports(response.data.reports || reports);
-    } catch (error) {
-      console.error('Error fetching reports:', error);
-      // Mock data
-      setReports({
-        revenue: 125000,
-        transactions: 1250,
-        successRate: 98.5,
-        averageTransaction: 100,
-        refunds: 2500,
-        fees: 3750
-      });
-    } finally {
-      setLoading(false);
-    }
+    // Backend API calls disabled - using static data
+    setReports({
+      revenue: 125000,
+      transactions: 1250,
+      successRate: 98.5,
+      averageTransaction: 100,
+      refunds: 2500,
+      fees: 3750
+    });
+    setLoading(false);
   };
 
   const exportReport = (format) => {

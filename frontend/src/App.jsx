@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
+// import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ScrollToTop';
 import ScrollToTopOnRouteChange from './components/ScrollToTopOnRouteChange';
 
 // Pages
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+// import Login from './pages/Login';
+// import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import PartnerRegistration from './pages/PartnerRegistration';
 import Payments from './pages/Payments';
@@ -37,8 +37,8 @@ function App() {
           <div className="page-transition">
             <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/login" element={<Login />} /> */}
+          {/* <Route path="/signup" element={<Signup />} /> */}
           <Route path="/payments" element={<Payments />} />
           <Route path="/banking" element={<Banking />} />
           <Route path="/payroll" element={<Payroll />} />
@@ -47,78 +47,16 @@ function App() {
           <Route path="/developers" element={<Developers />} />
           <Route path="/partner-with-us" element={<PartnerWithUs />} />
           <Route path="/support" element={<Support />} />
-          <Route
-            path="/transactions"
-            element={
-              <ProtectedRoute>
-                <Transactions />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/wallet"
-            element={
-              <ProtectedRoute>
-                <Wallet />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/payment-links"
-            element={
-              <ProtectedRoute>
-                <PaymentLinks />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/qr-code"
-            element={
-              <ProtectedRoute>
-                <QRCode />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/reports"
-            element={
-              <ProtectedRoute>
-                <Reports />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/invoices"
-            element={
-              <ProtectedRoute>
-                <Invoices />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/partner-register"
-            element={
-              <ProtectedRoute>
-                <PartnerRegistration />
-              </ProtectedRoute>
-            }
-          />
+          {/* Protected routes commented out - now accessible without authentication */}
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/wallet" element={<Wallet />} />
+          <Route path="/payment-links" element={<PaymentLinks />} />
+          <Route path="/qr-code" element={<QRCode />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/partner-register" element={<PartnerRegistration />} />
             </Routes>
           </div>
         </Router>

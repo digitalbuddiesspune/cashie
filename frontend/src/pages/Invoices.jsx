@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -22,12 +22,8 @@ const Invoices = () => {
   }, []);
 
   const fetchInvoices = async () => {
-    try {
-      const response = await api.get('/invoices');
-      setInvoices(response.data.invoices || []);
-    } catch (error) {
-      console.error('Error fetching invoices:', error);
-    }
+    // Backend API calls disabled - using static data
+    setInvoices([]);
   };
 
   const handleAddItem = () => {
@@ -57,39 +53,34 @@ const Invoices = () => {
   const handleCreateInvoice = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const invoiceData = {
-        ...formData,
-        total: calculateTotal(),
-        status: 'pending'
-      };
-      await api.post('/invoices', invoiceData);
-      alert('Invoice created successfully!');
-      setFormData({
-        customerName: '',
-        customerEmail: '',
-        customerPhone: '',
-        items: [{ description: '', quantity: 1, price: 0 }],
-        dueDate: '',
-        notes: ''
-      });
-      setShowForm(false);
-      fetchInvoices();
-    } catch (error) {
-      alert('Error creating invoice: ' + (error.response?.data?.message || error.message));
-    } finally {
-      setLoading(false);
-    }
+    // Backend API calls disabled - create mock invoice
+    const mockInvoice = {
+      _id: Math.random().toString(36).substring(7),
+      invoiceNumber: 'INV-' + new Date().getFullYear() + Math.random().toString(36).substring(7).toUpperCase(),
+      ...formData,
+      total: calculateTotal(),
+      subtotal: calculateTotal(),
+      tax: calculateTotal() * 0.18,
+      status: 'pending',
+      createdAt: new Date().toISOString()
+    };
+    setInvoices([...invoices, mockInvoice]);
+    alert('Invoice created successfully! (Static mode)');
+    setFormData({
+      customerName: '',
+      customerEmail: '',
+      customerPhone: '',
+      items: [{ description: '', quantity: 1, price: 0 }],
+      dueDate: '',
+      notes: ''
+    });
+    setShowForm(false);
+    setLoading(false);
   };
 
   const sendInvoice = async (invoiceId) => {
-    try {
-      await api.post(`/invoices/${invoiceId}/send`);
-      alert('Invoice sent successfully!');
-      fetchInvoices();
-    } catch (error) {
-      alert('Error sending invoice: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Invoice sent successfully! (Static mode - no actual email sent)');
   };
 
   return (

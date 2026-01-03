@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 
 const Wallet = () => {
   const [wallet, setWallet] = useState({ balance: 0, pending: 0 });
@@ -22,58 +22,30 @@ const Wallet = () => {
   }, []);
 
   const fetchWallet = async () => {
-    try {
-      const response = await api.get('/wallet');
-      setWallet(response.data.wallet || { balance: 0, pending: 0 });
-    } catch (error) {
-      console.error('Error fetching wallet:', error);
-    } finally {
-      setLoading(false);
-    }
+    // Backend API calls disabled - using static data
+    setWallet({ balance: 0, pending: 0 });
+    setLoading(false);
   };
 
   const handleAddMoney = async (e) => {
     e.preventDefault();
-    try {
-      await api.post('/wallet/add', { amount: parseFloat(formData.amount) });
-      alert('Money added successfully!');
-      setFormData({...formData, amount: ''});
-      fetchWallet();
-    } catch (error) {
-      alert('Error adding money: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Money added successfully! (Static mode - no actual transaction)');
+    setFormData({...formData, amount: ''});
   };
 
   const handleWithdraw = async (e) => {
     e.preventDefault();
-    try {
-      await api.post('/wallet/withdraw', {
-        amount: parseFloat(formData.transferAmount),
-        accountNumber: formData.accountNumber,
-        ifscCode: formData.ifscCode,
-        accountHolderName: formData.accountHolderName
-      });
-      alert('Withdrawal request submitted!');
-      setFormData({...formData, transferAmount: '', accountNumber: '', ifscCode: '', accountHolderName: ''});
-      fetchWallet();
-    } catch (error) {
-      alert('Error processing withdrawal: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Withdrawal request submitted! (Static mode - no actual transaction)');
+    setFormData({...formData, transferAmount: '', accountNumber: '', ifscCode: '', accountHolderName: ''});
   };
 
   const handleTransfer = async (e) => {
     e.preventDefault();
-    try {
-      await api.post('/wallet/transfer', {
-        amount: parseFloat(formData.transferAmount),
-        upiId: formData.upiId
-      });
-      alert('Transfer successful!');
-      setFormData({...formData, transferAmount: '', upiId: ''});
-      fetchWallet();
-    } catch (error) {
-      alert('Error processing transfer: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Transfer successful! (Static mode - no actual transaction)');
+    setFormData({...formData, transferAmount: '', upiId: ''});
   };
 
   return (

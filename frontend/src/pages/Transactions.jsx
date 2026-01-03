@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -21,44 +21,31 @@ const Transactions = () => {
   }, [filters, currentPage]);
 
   const fetchTransactions = async () => {
-    try {
-      const params = {
-        page: currentPage,
-        limit: itemsPerPage,
-        ...(filters.status !== 'all' && { status: filters.status }),
-        ...(filters.type !== 'all' && { type: filters.type }),
-        ...(filters.search && { search: filters.search })
-      };
-      const response = await api.get('/transactions', { params });
-      setTransactions(response.data.transactions || []);
-    } catch (error) {
-      console.error('Error fetching transactions:', error);
-      // Mock data for demo
-      setTransactions([
-        {
-          _id: '1',
-          amount: 5000,
-          type: 'credit',
-          status: 'completed',
-          description: 'Payment received from Customer A',
-          paymentMethod: 'UPI',
-          createdAt: new Date().toISOString(),
-          transactionId: 'TXN123456789'
-        },
-        {
-          _id: '2',
-          amount: 2500,
-          type: 'debit',
-          status: 'pending',
-          description: 'Refund to Customer B',
-          paymentMethod: 'Card',
-          createdAt: new Date(Date.now() - 86400000).toISOString(),
-          transactionId: 'TXN987654321'
-        }
-      ]);
-    } finally {
-      setLoading(false);
-    }
+    // Backend API calls disabled - using static data
+    // Mock data for demo
+    setTransactions([
+      {
+        _id: '1',
+        amount: 5000,
+        type: 'credit',
+        status: 'completed',
+        description: 'Payment received from Customer A',
+        paymentMethod: 'UPI',
+        createdAt: new Date().toISOString(),
+        transactionId: 'TXN123456789'
+      },
+      {
+        _id: '2',
+        amount: 2500,
+        type: 'debit',
+        status: 'pending',
+        description: 'Refund to Customer B',
+        paymentMethod: 'Card',
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        transactionId: 'TXN987654321'
+      }
+    ]);
+    setLoading(false);
   };
 
   const handleExport = () => {

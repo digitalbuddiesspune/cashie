@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 import { useAuth } from '../context/AuthContext';
 
 const Settings = () => {
@@ -39,32 +39,19 @@ const Settings = () => {
   }, []);
 
   const fetchApiKey = async () => {
-    try {
-      const response = await api.get('/settings/api-key');
-      setApiKey(response.data.apiKey || '');
-    } catch (error) {
-      console.error('Error fetching API key:', error);
-    }
+    // Backend API calls disabled - using static data
+    setApiKey('sk_static_' + Math.random().toString(36).substring(7));
   };
 
   const fetchWebhook = async () => {
-    try {
-      const response = await api.get('/settings/webhook');
-      setWebhookUrl(response.data.webhookUrl || '');
-    } catch (error) {
-      console.error('Error fetching webhook:', error);
-    }
+    // Backend API calls disabled - using static data
+    setWebhookUrl('');
   };
 
   const handleProfileUpdate = async (e) => {
     e.preventDefault();
-    try {
-      await api.put('/settings/profile', profileData);
-      alert('Profile updated successfully!');
-      fetchUser();
-    } catch (error) {
-      alert('Error updating profile: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Profile updated successfully! (Static mode - no actual update)');
   };
 
   const handlePasswordChange = async (e) => {
@@ -73,36 +60,21 @@ const Settings = () => {
       alert('New passwords do not match');
       return;
     }
-    try {
-      await api.put('/settings/password', {
-        currentPassword: securityData.currentPassword,
-        newPassword: securityData.newPassword
-      });
-      alert('Password changed successfully!');
-      setSecurityData({ currentPassword: '', newPassword: '', confirmPassword: '' });
-    } catch (error) {
-      alert('Error changing password: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Password changed successfully! (Static mode - no actual change)');
+    setSecurityData({ currentPassword: '', newPassword: '', confirmPassword: '' });
   };
 
   const generateApiKey = async () => {
-    try {
-      const response = await api.post('/settings/api-key');
-      setApiKey(response.data.apiKey);
-      alert('New API key generated!');
-    } catch (error) {
-      alert('Error generating API key: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    setApiKey('sk_static_' + Math.random().toString(36).substring(7));
+    alert('New API key generated! (Static mode)');
   };
 
   const handleWebhookUpdate = async (e) => {
     e.preventDefault();
-    try {
-      await api.put('/settings/webhook', { webhookUrl });
-      alert('Webhook URL updated successfully!');
-    } catch (error) {
-      alert('Error updating webhook: ' + (error.response?.data?.message || error.message));
-    }
+    // Backend API calls disabled
+    alert('Webhook URL updated successfully! (Static mode - no actual update)');
   };
 
   const copyApiKey = () => {

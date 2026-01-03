@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 
 const PartnerRegistration = () => {
   const [formData, setFormData] = useState({
@@ -38,17 +38,12 @@ const PartnerRegistration = () => {
     setError('');
     setLoading(true);
 
-    try {
-      await api.post('/partners/register', formData);
-      setSuccess(true);
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 2000);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+    // Backend API calls disabled
+    setSuccess(true);
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 2000);
+    setLoading(false);
   };
 
   if (success) {

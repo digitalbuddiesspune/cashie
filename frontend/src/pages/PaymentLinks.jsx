@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import api from '../utils/api';
+// import api from '../utils/api'; // Backend API calls disabled
 
 const PaymentLinks = () => {
   const [links, setLinks] = useState([]);
@@ -21,34 +21,36 @@ const PaymentLinks = () => {
   }, []);
 
   const fetchLinks = async () => {
-    try {
-      const response = await api.get('/payment-links');
-      setLinks(response.data.links || []);
-    } catch (error) {
-      console.error('Error fetching payment links:', error);
-    }
+    // Backend API calls disabled - using static data
+    setLinks([]);
   };
 
   const handleCreateLink = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const response = await api.post('/payment-links', formData);
-      alert('Payment link created successfully!');
-      setFormData({
-        amount: '',
-        description: '',
-        customerName: '',
-        customerEmail: '',
-        expiryDays: '30'
-      });
-      setShowForm(false);
-      fetchLinks();
-    } catch (error) {
-      alert('Error creating payment link: ' + (error.response?.data?.message || error.message));
-    } finally {
-      setLoading(false);
-    }
+    // Backend API calls disabled - create mock link
+    const mockLink = {
+      _id: Math.random().toString(36).substring(7),
+      amount: parseFloat(formData.amount),
+      description: formData.description,
+      customerName: formData.customerName,
+      customerEmail: formData.customerEmail,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + parseInt(formData.expiryDays) * 24 * 60 * 60 * 1000).toISOString(),
+      url: generateMockLink()
+    };
+    setLinks([...links, mockLink]);
+    alert('Payment link created successfully! (Static mode)');
+    setFormData({
+      amount: '',
+      description: '',
+      customerName: '',
+      customerEmail: '',
+      expiryDays: '30'
+    });
+    setShowForm(false);
+    setLoading(false);
   };
 
   const copyToClipboard = (text) => {

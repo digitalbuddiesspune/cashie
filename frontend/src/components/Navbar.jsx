@@ -69,7 +69,14 @@ const Navbar = () => {
 
           {/* Auth Buttons / User Menu - Right */}
           <div className="hidden md:flex items-center space-x-3">
-            {user ? (
+            {/* Login/Signup commented out - redirecting to dashboard */}
+            <Link
+              to="/dashboard"
+              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
+            >
+              Dashboard
+            </Link>
+            {/* {user ? (
               <>
                 <Link
                   to="/dashboard"
@@ -91,19 +98,26 @@ const Navbar = () => {
               >
                 Login
               </Link>
-            )}
+            )} */}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
-            {user && (
+            {/* Always show dashboard link */}
+            <Link
+              to="/dashboard"
+              className="px-3 py-1.5 text-indigo-600 font-medium text-sm rounded-lg hover:bg-indigo-50 transition-colors"
+            >
+              Dashboard
+            </Link>
+            {/* {user && (
               <Link
                 to="/dashboard"
                 className="px-3 py-1.5 text-indigo-600 font-medium text-sm rounded-lg hover:bg-indigo-50 transition-colors"
               >
                 Dashboard
               </Link>
-            )}
+            )} */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-all duration-200"
@@ -181,7 +195,15 @@ const Navbar = () => {
               >
                 Pricing
               </Link>
-              {!user && (
+              <Link
+                to="/dashboard"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg mt-2 border border-slate-200"
+              >
+                Dashboard
+              </Link>
+              {/* Login/Signup commented out */}
+              {/* {!user && (
                 <Link
                   to="/login"
                   onClick={() => setIsMenuOpen(false)}
@@ -206,7 +228,7 @@ const Navbar = () => {
                     Logout
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         )}
