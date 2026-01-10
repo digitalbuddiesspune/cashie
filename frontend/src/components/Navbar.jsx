@@ -69,12 +69,11 @@ const Navbar = () => {
 
           {/* Auth Buttons / User Menu - Right */}
           <div className="hidden md:flex items-center space-x-3">
-            {/* Login/Signup commented out - redirecting to dashboard */}
             <Link
-              to="/dashboard"
-              className="px-3 py-1.5 text-slate-700 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg hover:bg-slate-50 text-sm"
+              to="/login"
+              className="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md text-sm"
             >
-              Dashboard
+              Sign In
             </Link>
             {/* {user ? (
               <>
@@ -103,12 +102,11 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
-            {/* Always show dashboard link */}
             <Link
-              to="/dashboard"
-              className="px-3 py-1.5 text-indigo-600 font-medium text-sm rounded-lg hover:bg-indigo-50 transition-colors"
+              to="/login"
+              className="px-3 py-1.5 bg-indigo-600 text-white font-medium text-sm rounded-lg hover:bg-indigo-700 transition-colors"
             >
-              Dashboard
+              Sign In
             </Link>
             {/* {user && (
               <Link
@@ -196,11 +194,11 @@ const Navbar = () => {
                 Pricing
               </Link>
               <Link
-                to="/dashboard"
+                to="/login"
                 onClick={() => setIsMenuOpen(false)}
-                className="px-4 py-3 text-slate-700 hover:text-indigo-600 hover:bg-slate-50 transition-all duration-200 font-medium rounded-lg mt-2 border border-slate-200"
+                className="px-4 py-3 bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-200 font-medium rounded-lg mt-2 shadow-sm"
               >
-                Dashboard
+                Sign In
               </Link>
               {/* Login/Signup commented out */}
               {/* {!user && (

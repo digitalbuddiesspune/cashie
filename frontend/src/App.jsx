@@ -7,7 +7,7 @@ import ScrollToTopOnRouteChange from './components/ScrollToTopOnRouteChange';
 
 // Pages
 import Home from './pages/Home';
-// import Login from './pages/Login';
+import Login from './pages/Login';
 // import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import PartnerRegistration from './pages/PartnerRegistration';
@@ -37,7 +37,7 @@ function App() {
           <div className="page-transition">
             <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/login" element={<Login />} />
           {/* <Route path="/signup" element={<Signup />} /> */}
           <Route path="/payments" element={<Payments />} />
           <Route path="/banking" element={<Banking />} />
